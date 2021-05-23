@@ -1,0 +1,108 @@
+{% extends 'pageTemplate.html' %}
+
+{% block head %}
+{% block heady %}{% endblock %}
+{% endblock %}
+
+
+{% block body %}
+<fieldset id="toolBox">
+    <form action="/toolBoxHandler" method="post">
+        <input type="submit" value="Title" name="submit" id="textPlace">
+        <input type="submit" value="Icon" name="submit" id="iconPlace">
+        <br>
+        <input type="submit" value="Borders" id="borderPlace" name="submit">
+        {% block toolBox %}{% endblock %}
+    </form>
+    <form action="/backgroundAdjust" method="post">
+        <label for="backgroundColor">Adjust The Background Color:</label>
+        <br>
+        <input type="color" name="backgroundColor">
+        {% block cardSide %}{% endblock %}
+        <input type="submit">
+    </form>
+    </fieldset>
+
+<center>
+    {% block userCard %}
+    {% endblock %}
+</center>
+
+<!--Options!-->
+<div style="display:none; display:{{newVisText}};" id="textSettings">
+    <h3>{{textEditorTitle}}</h3>
+        <form method="post" action="/userText">
+            <label for="textContent">Text</label>
+            <input type="text" name="textContent" id="textContent" placeholder="Enter Text">
+            <input type="submit">
+        <textarea name="sideOfCard" style="display:none;">{{sideOfCard}}</textarea>
+        </form>
+
+        <form method="post" action="/textColor">
+            <label for="textColor">Text Color</label>
+            <input type="color" name="textColor" id="textColor">
+            <input type="submit">
+        <textarea name="sideOfCard" style="display:none;">{{sideOfCard}}</textarea>
+        </form>
+
+
+
+    <form method="post" action="/fontChanger">
+        <label for="fontSelection">Font Selection</label>
+        <select name="fonts" id="fontSelection">
+            <option selected="selected">Times New Roman</option>
+            <option>Fantasy</option>
+            <option>Arial</option>
+        </select>
+        <input type="submit">
+        <textarea name="sideOfCard" style="display:none;">{{sideOfCard}}</textarea>
+    </form>
+    {% block textOptions %}{% endblock %}
+    {% block closeText %}{% endblock %}
+
+    <form method="post" action="/optionsCloser/text">
+        <input type="submit" value="Close Options">
+    </form>
+</div>
+
+
+<div style="display:none; display:{{newVisIcon}};" id="iconOptions">
+    <form method="post" action="/iconUpdater/{{sideOfCard}}" enctype="multipart/form-data">
+        <label for="iconSubmit">Submit an Image for the Card</label>
+        <input id="iconSubmit" name="userIcon" type="file" accept=".jpg, .png">
+        <textarea name="sideOfCard" style="display:none;">{{sideOfCard}}</textarea>
+        <input type="submit">
+    </form>
+    <form method="post" action="/optionsCloser/icon">
+        <input type="submit" value="Close Options">
+    </form>
+    {% block iconOptions %}{% endblock %}
+</div>
+
+
+<div style="display:none; display:{{newVisBord}};" id="borderOptions">
+    <p>Border Style</p>
+    <form method="post" action="/borderStyleUpdater">
+        <select name="borderOptionsChose" id="borderOptionsDecider">
+            <option>Dotted</option>
+            <option>Solid</option>
+            <option>Dashed</option>
+        </select>
+        <textarea name="sideOfCard" style="display:none;">{{sideOfCard}}</textarea>
+        <input type="submit">
+    </form>
+
+    <p>Border Color</p>
+    <form method="post" action="/borderColorUpdater">
+        <input name="borderColor" id="borderColor" type="color">
+        <textarea style="display:none;" name="sideOfCard">{{sideOfCard}}</textarea>
+        <input type="submit">
+    </form>
+    <form method="post" action="/optionsCloser/bord">
+        <input type="submit" value="Close Options">
+    </form>
+</div>
+
+{% block extraOptions %}{% endblock %}
+<!--End of Options!-->
+{% endblock %}

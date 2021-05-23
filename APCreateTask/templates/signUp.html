@@ -1,0 +1,26 @@
+{% extends 'pageTemplate.html' %}
+
+{% block head %}
+<title>Card Maker | Sign Up</title>
+{% endblock %}
+
+{% block body %}
+<fieldset>
+    <legend>Sign Up</legend>
+    <form action="/signUpHandler" method="post">
+        <label for="user" id="userLabel">Username:</label>
+        <p style="color:red;">{{response}}</p>
+        <input required="required" type="text" placeholder="Your username" name="user" id="user">
+        <br>
+        <label id="passLabel" for="pass">Password</label>
+        <br>
+        <input required="required" type="password" placeholder="Your password" name="pass" id="pass">
+        <hr>
+        <input type="submit" id="submitButton">
+        <hr>
+        <p style="color:green;">{{success}}</p>
+        <a href="/">Return to Login</a>
+    </form>
+</fieldset>
+
+{% endblock %}

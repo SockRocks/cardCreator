@@ -1,0 +1,32 @@
+{% extends 'cardEditorBase.html' %}
+
+{% block heady %}
+<title>New Card Set | Back Side of Card</title>
+<link rel="stylesheet" type="text/css" href="{{url_for('static', filename='stylesheets/backSideOfCardStyle.css')}}">
+<script>
+    {{loginSuccessful}}
+</script>
+{% endblock %}
+
+{% block toolBox %}
+    <br>
+    <input type="submit" value="Change to Front-Side of Card" id="changSide" name="submit">
+    <textarea style="display:none;" name="sideOfCard">back</textarea>
+{% endblock %}
+
+{% block cardSide %}
+    <textarea style="display:none;" name="sideOfCard">back</textarea>
+{% endblock %}
+
+
+{% block userCard %}
+<!--The div that will be decorated in accordance to the user's settings!-->
+<div id="userCard" style="overflow:auto; background-color:white; background-color:{{newBackColor}}; width:20%; height:500px; border-style:none; border-style:{{borderStyle}}; border-color:{{borderColor}}">
+    <h1 id="userTitle" style=" color:black; color:{{newColor}}; font-family:times; font-family:{{newFontFam}};">{{userText}}</h1>
+    <figure>
+        <center>
+        <img src="{{userImg}}"  draggable="false" alt="No Image Selected" width="100%" height="150%">
+        </center>
+    </figure>
+</div>
+{% endblock %}

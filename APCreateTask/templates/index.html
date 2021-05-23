@@ -1,0 +1,28 @@
+<!-- States what template to inherit from!-->
+{% extends 'pageTemplate.html' %}
+
+{% block head %}
+<title>Card Maker | Login</title>
+{% endblock %}
+
+{% block body %}
+<!-- Fieldset for the login information!-->
+<fieldset id="loginBox">
+    <legend>Login to Card Creator</legend>
+<form method="post" action="/loginHandler">
+    <label for="username">Username:</label>
+    <p style="color:red;">{{invalidUser}}</p>
+    <input required="required" name="username" id="username" type="text" placeholder="username">
+    <br>
+    <label for="password">Password:</label>
+    <p style="color:red;">{{invalidPass}}</p>
+    <input required="required" name="password" id="password" type="password" placeholder="password">
+
+    <br>
+
+    <input type="submit" value="Login">
+    </form>
+    <br>
+    <a href="signUpPageRedirector">Sign Up</a>
+</fieldset>
+{% endblock%}
